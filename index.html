@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TokoKita - Beranda</title>
+    <title>TokoKita - Katalog Produk</title>
     <!-- FontAwesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -58,49 +58,9 @@
             color: #b08968;
         }
 
-        /* --- STYLING HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            background-color: #f9f9f9;
-            margin-top: 60px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            max-width: 600px;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            background-color: #3e2723;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #5d4037;
-        }
-
         /* --- KATALOG PRODUK (5 PRODUK) --- */
         .products-section {
-            padding: 60px 20px;
+            padding: 100px 20px 60px 20px; /* Jarak atas disesuaikan dengan tinggi navbar */
             background-color: #fff;
             text-align: center;
         }
@@ -128,16 +88,30 @@
             width: 200px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
         }
 
+        .product-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
         .product-card i {
             font-size: 50px;
             color: #3e2723;
             margin-bottom: 15px;
+            height: 140px;
+            display: flex;
+            align-items: center;
         }
 
         .product-card h4 {
@@ -200,28 +174,21 @@
         <div class="logo">TokoKita</div>
         <nav>
             <ul>
-                <li><a href="#" class="active">Beranda</a></li>
-                <li><a href="#produk">Produk</a></li>
+                <li><a href="#produk" class="active">Produk</a></li>
                 <li><a href="#">Kontak</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Selamat Datang di TokoKita</h1>
-        <p>Temukan produk-produk terbaik dan berkualitas tinggi hanya untuk Anda dengan harga terjangkau.</p>
-        <a href="#produk" class="cta-button">Lihat Katalog Produk</a>
-    </section>
-
-    <!-- KATALOG PRODUK (5 PRODUK) -->
+    <!-- KATALOG PRODUK -->
     <section class="products-section" id="produk">
         <h2>Katalog Produk</h2>
         <div class="product-grid">
             <div class="product-card">
-                <i class="fas fa-user-tie"></i>
+                <!-- Gambar Baju -->
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80" alt="Baju">
                 <h4>Baju</h4>
-                <p>Rp 150.000</p>
+                <p>Rp 100.000</p>
             </div>
             <div class="product-card">
                 <i class="fas fa-tshirt"></i>
@@ -229,19 +196,22 @@
                 <p>Rp 85.000</p>
             </div>
             <div class="product-card">
-                <i class="fas fa-hat-cowboy"></i>
+                <!-- Gambar Topi -->
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=80" alt="Topi">
                 <h4>Topi</h4>
                 <p>Rp 50.000</p>
             </div>
             <div class="product-card">
-                <i class="fas fa-socks"></i>
+                <!-- Gambar Celana Cargo Cokelat -->
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80" alt="Celana">
                 <h4>Celana</h4>
-                <p>Rp 175.000</p>
+                <p>Rp 150.000</p>
             </div>
             <div class="product-card">
-                <i class="fas fa-shoe-prints"></i>
+                <!-- Gambar Sepatu -->
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Sepatu">
                 <h4>Sepatu</h4>
-                <p>Rp 250.000</p>
+                <p>Rp 200.000</p>
             </div>
         </div>
     </section>
