@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog 50 Produk</title>
+    <title>TokoKita - Beranda</title>
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* --- RESET DASAR --- */
         * {
             margin: 0;
             padding: 0;
@@ -13,129 +16,259 @@
         }
 
         body {
-            background-color: #0f172a;
-            padding: 20px;
-            color: #fff;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
         }
 
-        h1 {
+        /* --- STYLING NAVIGASI (NAVBAR) --- */
+        header {
+            background-color: #fff;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: #b08968;
+        }
+
+        /* --- STYLING HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+            margin-top: 60px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            max-width: 1300px;
+        .hero h1 {
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #3e2723;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #5d4037;
+        }
+
+        /* --- KATALOG PRODUK (5 PRODUK) --- */
+        .products-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .products-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .gallery-item {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            background-color: #1e293b;
-            transition: transform 0.3s ease;
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.04);
+        .product-card:hover {
+            transform: translateY(-5px);
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .product-card i {
+            font-size: 50px;
+            color: #3e2723;
+            margin-bottom: 15px;
         }
 
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 10px;
-            font-size: 0.85rem;
+        .product-card h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #b08968;
+            font-weight: bold;
+        }
+
+        /* --- STYLING FITUR KEUNGGULAN --- */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .feature-item {
+            flex: 1;
             text-align: center;
+            padding: 20px;
+            max-width: 300px;
+        }
+
+        .feature-item i {
+            font-size: 40px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <h1>Katalog Produk</h1>
-    <div class="gallery" id="product-gallery"></div>
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">TokoKita</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Beranda</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <script>
-        const products = [
-            { id: 1, name: "Gayung Plastik", category: "Peralatan Rumah", price: 15000, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=500&q=80" },
-            { id: 2, name: "Sepeda Gunung", category: "Olahraga", price: 2500000, image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=500&q=80" },
-            { id: 3, name: "Cermin Dinding", category: "Dekorasi", price: 120000, image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80" },
-            { id: 4, name: "Sapu Ijuk", category: "Peralatan Rumah", price: 25000, image: "https://images.unsplash.com/photo-1585837575652-267c041d77d4?auto=format&fit=crop&w=500&q=80" },
-            { id: 5, name: "Handuk Mandi", category: "Peralatan Rumah", price: 60000, image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?auto=format&fit=crop&w=500&q=80" },
-            { id: 6, name: "Piring Keramik", category: "Dapur", price: 35000, image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=500&q=80" },
-            { id: 7, name: "Gelas Kaca", category: "Dapur", price: 12000, image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=80" },
-            { id: 8, name: "Wajan Anti Lengket", category: "Dapur", price: 175000, image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=500&q=80" },
-            { id: 9, name: "Panci Stainless", category: "Dapur", price: 150000, image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=500&q=80" },
-            { id: 10, name: "Pisau Dapur", category: "Dapur", price: 45000, image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=500&q=80" },
-            { id: 11, name: "Sendok & Garpu Set", category: "Dapur", price: 50000, image: "https://images.unsplash.com/photo-1615865417236-d67f57a3f657?auto=format&fit=crop&w=500&q=80" },
-            { id: 12, name: "Botol Minum Olahraga", category: "Olahraga", price: 85000, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=80" },
-            { id: 13, name: "Kipas Angin Portable", category: "Elektronik", price: 95000, image: "https://images.unsplash.com/photo-1618941709602-92849f611320?auto=format&fit=crop&w=500&q=80" },
-            { id: 14, name: "Lampu Meja Belajar", category: "Elektronik", price: 130000, image: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=500&q=80" },
-            { id: 15, name: "Jam Dinding Analog", category: "Dekorasi", price: 75000, image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=500&q=80" },
-            { id: 16, name: "Bantal Tidur Empuk", category: "Peralatan Rumah", price: 65000, image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" },
-            { id: 17, name: "Sprei Kasur Polos", category: "Peralatan Rumah", price: 180000, image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=500&q=80" },
-            { id: 18, name: "Kursi Lipat", category: "Furniture", price: 150000, image: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=500&q=80" },
-            { id: 19, name: "Meja Kerja Kayu", category: "Furniture", price: 750000, image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=500&q=80" },
-            { id: 20, name: "Rak Sepatu Susun", category: "Furniture", price: 110000, image: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=500&q=80" },
-            { id: 21, name: "Tas Punggung / Backpack", category: "Fashion", price: 220000, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" },
-            { id: 22, name: "Dompet Kulit", category: "Fashion", price: 135000, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=500&q=80" },
-            { id: 23, name: "Sepatu Lari Running", category: "Olahraga", price: 450000, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" },
-            { id: 24, name: "Sandal Santai", category: "Fashion", price: 45000, image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=500&q=80" },
-            { id: 25, name: "Topi Baseball", category: "Fashion", price: 55000, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=80" },
-            { id: 26, name: "Kacamata Hitam", category: "Fashion", price: 90000, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=500&q=80" },
-            { id: 27, name: "Payung Lipat", category: "Peralatan Rumah", price: 60000, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=500&q=80" },
-            { id: 28, name: "Jas Hujan", category: "Peralatan Rumah", price: 115000, image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=500&q=80" },
-            { id: 29, name: "Setrika Listrik", category: "Elektronik", price: 165000, image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=500&q=80" },
-            { id: 30, name: "Blender Jus", category: "Elektronik", price: 280000, image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=500&q=80" },
-            { id: 31, name: "Rice Cooker Mini", category: "Elektronik", price: 320000, image: "https://images.unsplash.com/photo-1544233726-9f1d2b27be8b?auto=format&fit=crop&w=500&q=80" },
-            { id: 32, name: "Tekli Listrik Stainless", category: "Elektronik", price: 140000, image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=500&q=80" },
-            { id: 33, name: "Headphone Wireless", category: "Elektronik", price: 350000, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" },
-            { id: 34, name: "Speaker Bluetooth", category: "Elektronik", price: 210000, image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80" },
-            { id: 35, name: "Keyboard Mechanical", category: "Elektronik", price: 450000, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=500&q=80" },
-            { id: 36, name: "Mouse Wireless", category: "Elektronik", price: 125000, image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=500&q=80" },
-            { id: 37, name: "Buku Catatan Grid", category: "Alat Tulis", price: 25000, image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80" },
-            { id: 38, name: "Pulpen Gel Set", category: "Alat Tulis", price: 30000, image: "https://images.unsplash.com/photo-1585336261026-8f5786372966?auto=format&fit=crop&w=500&q=80" },
-            { id: 39, name: "Matras Yoga", category: "Olahraga", price: 135000, image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=500&q=80" },
-            { id: 40, name: "Dumbbell 5kg Pair", category: "Olahraga", price: 190000, image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=500&q=80" },
-            { id: 41, name: "Bola Basket", category: "Olahraga", price: 210000, image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=500&q=80" },
-            { id: 42, name: "Raket Badminton", category: "Olahraga", price: 275000, image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=500&q=80" },
-            { id: 43, name: "Tanaman Hias Sukulen", category: "Dekorasi", price: 35000, image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=500&q=80" },
-            { id: 44, name: "Vung Bunga Keramik", category: "Dekorasi", price: 85000, image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=500&q=80" },
-            { id: 45, name: "Lilin Aromaterapi", category: "Dekorasi", price: 45000, image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" },
-            { id: 46, name: "Tempat Sampah Injak", category: "Peralatan Rumah", price: 70000, image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=500&q=80" },
-            { id: 47, name: "Sikat Gigi Elektrik", category: "Kesehatan", price: 195000, image: "https://images.unsplash.com/photo-1559591937-e68fb3305e40?auto=format&fit=crop&w=500&q=80" },
-            { id: 48, name: "Hair Dryer Portable", category: "Kesehatan", price: 160000, image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" },
-            { id: 49, name: "Timbangan Badan Digital", category: "Kesehatan", price: 105000, image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?auto=format&fit=crop&w=500&q=80" },
-            { id: 50, name: "Kotak P3K Lengkap", category: "Kesehatan", price: 85000, image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=500&q=80" }
-        ];
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Selamat Datang di TokoKita</h1>
+        <p>Temukan produk-produk terbaik dan berkualitas tinggi hanya untuk Anda dengan harga terjangkau.</p>
+        <a href="#produk" class="cta-button">Lihat Katalog Produk</a>
+    </section>
 
-        const galleryContainer = document.getElementById('product-gallery');
+    <!-- KATALOG PRODUK (5 PRODUK) -->
+    <section class="products-section" id="produk">
+        <h2>Katalog Produk</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <i class="fas fa-user-tie"></i>
+                <h4>Baju</h4>
+                <p>Rp 150.000</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-tshirt"></i>
+                <h4>Kaos</h4>
+                <p>Rp 85.000</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-hat-cowboy"></i>
+                <h4>Topi</h4>
+                <p>Rp 50.000</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-socks"></i>
+                <h4>Celana</h4>
+                <p>Rp 175.000</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-shoe-prints"></i>
+                <h4>Sepatu</h4>
+                <p>Rp 250.000</p>
+            </div>
+        </div>
+    </section>
 
-        products.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'gallery-item';
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
-                <div class="overlay">${product.name}</div>
-            `;
-            galleryContainer.appendChild(card);
-        });
-    </script>
+    <!-- FITUR KEUNGGULAN -->
+    <section class="features">
+        <div class="feature-item">
+            <i class="fas fa-shipping-fast"></i>
+            <h3>Pengiriman Cepat</h3>
+            <p>Pesanan dikirim langsung ke rumah Anda dengan aman dan cepat.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Kualitas Terjamin</h3>
+            <p>Produk original dengan garansi kualitas terbaik.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-headset"></i>
+            <h3>Layanan 24/7</h3>
+            <p>Dukungan pelanggan siap membantu Anda kapan saja.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 TokoKita. Hak Cipta Dilindungi.</p>
+    </footer>
+
 </body>
 </html>
